@@ -1,0 +1,128 @@
+[
+  {
+    "curriculum":"NCERT",
+    "classvalue": 6,
+    "name": "Maths",
+    "code": "MA6"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 6,
+    "name": "Science",
+    "code": "SC6"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 6,
+    "name": "English",
+    "code": "EN6"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 6,
+    "name": "Hindi",
+    "code": "HI6"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 6,
+    "name": "Urdu",
+    "code": "UR6"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 6,
+    "name": "Social Sciecne",
+    "code": "SS6"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 6,
+    "name": "Sanskrit",
+    "code": "SA6"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 7,
+    "name": "Maths",
+    "code": "MA7"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 7,
+    "name": "Science",
+    "code": "SC7"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 7,
+    "name": "English",
+    "code": "EN7"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 7,
+    "name": "Hindi",
+    "code": "HI7"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 7,
+    "name": "Urdu",
+    "code": "UR7"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 7,
+    "name": "Social Sciecne",
+    "code": "SS7"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 7,
+    "name": "Sanskrit",
+    "code": "SA7"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 8,
+    "name": "Maths",
+    "code": "MA8"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 8,
+    "name": "Science",
+    "code": "SC8"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 8,
+    "name": "English",
+    "code": "EN8"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 8,
+    "name": "Hindi",
+    "code": "HI8"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 8,
+    "name": "Urdu",
+    "code": "UR8"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 8,
+    "name": "Social Sciecne",
+    "code": "SS8"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 8,
+    "name": "Sanskrit",
+    "code": "SA8"
+  }
+]

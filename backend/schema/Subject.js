@@ -9,8 +9,8 @@ const SubjectSchema =new mongoose.Schema({
         type:String,
         require: true
     },
-    classvalue:{
-        type: Number,
+    class:{
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Class Schema",
         require: true
     },

@@ -9,6 +9,10 @@ import School from '../../schema/School.js';
 import Teacher from '../../schema/Teacher.js';
 import Student from '../../schema/Student.js';
 import SchoolAdmin from '../../schema/SchoolAdmin.js';
+import Cls from '../../schema/Class.js'
+import Subj from '../../schema/Subject.js';
+import Chapter from '../../schema/Chapter.js';
+import Topic from '../../schema/Topic.js';
 
 const router=express.Router();
 router.use(express.json());
@@ -241,6 +245,185 @@ async(req,res)=>{
 
             await schooladmin.save();
             added++;
+        }
+
+        console.log("added:",added)
+        return res.send({added}); 
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500);
+    }
+}
+)
+
+// Add Class
+router.post('/upload-file/class',upload.single('jsonFile'),
+async(req,res)=>{ 
+    try{
+        const { file } = req;
+        var added=0;
+
+        // Read and parse the JSON file
+        var filedata = fs.readFileSync(file.path, "utf8"); 
+        const jsonData = JSON.parse(filedata);
+        console.log()
+
+        var cls,found
+        for(var i=0;i<jsonData.length;i++){
+            found=await Cls.find({classvalue:jsonData[i].classvalue,curriculum:jsonData[i].curriculum});
+            if(found.length){
+                console.log("found:",found[0])
+                continue
+            }
+            cls=new Cls({
+                classvalue: jsonData[i].classvalue,
+                curriculum: jsonData[i].curriculum,
+            })
+
+            await cls.save();
+            added++;
+        }
+
+        console.log("added:",added)
+        return res.send({added}); 
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500);
+    }
+}
+)
+
+// Add Subjects
+router.post('/upload-file/subjects',upload.single('jsonFile'),
+async(req,res)=>{ 
+    try{
+        const { file } = req;
+        var added=0;
+
+        // Read and parse the JSON file
+        var filedata = fs.readFileSync(file.path, "utf8"); 
+        const jsonData = JSON.parse(filedata);
+        console.log()
+
+        var subject,foundclasses,foundsubj,clsid
+        for(var i=0;i<jsonData.length;i++){
+            foundclasses=await Cls.find({curriculum:jsonData[i].curriculum,classvalue: jsonData[i].classvalue})
+            if(foundclasses.length==0){
+                console.log("creating class:",jsonData[i].classvalue,jsonData[i].curriculum)
+                newclass=new Cls({
+                    classvalue: jsonData[i].classvalue,
+                    curriculum: jsonData[i].curriculum,
+                })
+                await newclass.save()
+                clsid=newclass._id
+            }
+            else{
+                clsid=foundclasses[0]._id
+            }
+            foundsubj=await Subj.find({class:clsid,code:jsonData[i].code});
+            if(foundsubj.length){
+                console.log("found:",foundsubj[0])
+                continue
+            }
+            subject=new Subj({
+                class:clsid,
+                code:jsonData[i].code,
+                name:jsonData[i].name,
+            })
+
+            await subject.save();
+            added++;
+            // console.log(subject);
+        }
+
+        console.log("added:",added)
+        return res.send({added}); 
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500);
+    }
+}
+)
+
+// Add Chapters
+router.post('/upload-file/chapters',upload.single('jsonFile'),
+async(req,res)=>{ 
+    try{
+        const { file } = req;
+        var added=0;
+
+        // Read and parse the JSON file
+        var filedata = fs.readFileSync(file.path, "utf8"); 
+        const jsonData = JSON.parse(filedata);
+
+        var chap,foundsubj
+        for(var i=0;i<jsonData.length;i++){
+            foundsubj=await Subj.find({code:jsonData[i].subjcode})
+            if(foundsubj.length==0){
+                // return res.status(400).send({errors: [{msg: "Subject not found"}]})
+                continue;
+            }
+            chap= await Chapter.find({subjcode: jsonData[i].subjcode,chno: jsonData[i].chno})
+            if(chap.length){
+                // return res.status(400).send({errors: [{msg: "Subject not found"}]})
+                continue;
+            }
+            chap=new Chapter({
+                subjcode: jsonData[i].subjcode,
+                chno: jsonData[i].chno,
+                name: jsonData[i].name
+            })
+
+            await chap.save();
+            added++;
+            // console.log(subject);
+        }
+
+        console.log("added:",added)
+        return res.send({added}); 
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500);
+    }
+}
+)
+
+// Add Topics
+router.post('/upload-file/topics',upload.single('jsonFile'),
+async(req,res)=>{ 
+    try{
+        const { file } = req;
+        var added=0;
+
+        // Read and parse the JSON file
+        var filedata = fs.readFileSync(file.path, "utf8"); 
+        const jsonData = JSON.parse(filedata);
+
+        var topic,foundchap
+        for(var i=0;i<jsonData.length;i++){
+            foundchap=await Chapter.find({subjcode:jsonData[i].subjcode,chno:jsonData[i].chno})
+            if(foundchap.length==0){
+                // return res.status(400).send({errors: [{msg: "Subject not found"}]})
+                continue;
+            }
+            topic= await Topic.find({chapter: foundchap[0]._id,topicno: jsonData[i].topicno})
+            if(topic.length){
+                // return res.status(400).send({errors: [{msg: "Subject not found"}]})
+                continue;
+            }
+            topic=new Topic({
+                chapter: foundchap[0]._id,
+                topicno: jsonData[i].topicno,
+                name: jsonData[i].name
+            })
+
+            await topic.save();
+            added++;
+            // console.log(subject);
         }
 
         console.log("added:",added)

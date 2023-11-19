@@ -1,0 +1,41 @@
+[
+  {
+    "subjcode": "MA8",
+    "chno":1,
+    "name": "Rational Numbers"
+  },
+  {
+    "subjcode": "MA8",
+    "chno": 2,
+    "name": "Linear Equations in One Variable"
+  },{
+    "subjcode": "MA8",
+    "chno": 3,
+    "name": "Understanding Quadrilaterals"
+  },{
+    "subjcode": "MA8",
+    "chno": 4,
+    "name": "Data Handling"
+  },{
+    "subjcode": "MA8",
+    "chno": 5,
+    "name": "Squares and Square Roots"
+  },{
+    "subjcode": "MA8",
+    "chno": 6,
+    "name": "Cubes and Cube Roots"
+  },
+  {
+    "subjcode": "MA8",
+    "chno": 7,
+    "name": "Comparing Quantities"
+  },{
+    "subjcode": "MA8",
+    "chno": 8,
+    "name": "Algebraic Expressions and Identities"
+  },{
+    "subjcode": "MA8",
+    "chno": 9,
+    "name": "Mensuration"
+  }
+]

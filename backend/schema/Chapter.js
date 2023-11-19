@@ -1,11 +1,12 @@
 import mongoose from 'mongoose';
 
 const ChapterSchema =new mongoose.Schema({
-    Chaptercode:{
+    subjcode:{
         type: String,
         require: true,
         ref: "Chapter Schema"
     },
+    chno:Number,
     name:{
         type:String,
         require: true

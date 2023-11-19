@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 
 const ClassSchema =new mongoose.Schema({
-    _id: Number,
+    classvalue: Number,
+    curriculum: String
 });
 
 const Class=mongoose.model("Class Schema",ClassSchema);

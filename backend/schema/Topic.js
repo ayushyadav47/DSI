@@ -5,8 +5,9 @@ const TopicSchema =new mongoose.Schema({
         type:String,
         require: true
     },
+    topicno:Number,
     chapter:{
-        type:Schema.Types.ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         ref: "Chapter Schema",
         require: true
     },
