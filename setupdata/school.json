@@ -1,0 +1,16 @@
+[
+  {
+    "schoolID": "2000",
+    "name": "ABC School",
+    "address": "Road, Hyderabad, Telangana",
+    "adminID": "1000",
+    "email": "  abc@example.com"
+  },
+  {
+    "schoolID": "2001",
+    "name": "XYZ Academy",
+    "address": "Highway, Hyderabad, Telangana",
+    "adminID": "1000",
+    "email": "  xyz@example.com"
+  }
+]

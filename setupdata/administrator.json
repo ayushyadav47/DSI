@@ -1,0 +1,16 @@
+[
+  {
+    "adminid": "1000",
+    "firstname": "Rohit",
+    "middlename": "",
+    "lastname": "Malhotra",
+    "email": "  rohit@example.com"
+  },
+  {
+    "adminid": "1001",
+    "firstname": "Prakash",
+    "middlename": "Kumar",
+    "lastname": "Reddy",
+    "email": "kumar@example.com"
+  }
+]

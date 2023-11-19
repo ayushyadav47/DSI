@@ -1,0 +1,17 @@
+[
+  {
+    "schooladminID": "4444Q",
+    "firstname": "Krish",
+    "lastname": "Tomar",
+    "email": "  kt@example.com",
+    "schoolID":"2000"
+  },
+  {
+    "schooladminID": "5555Y",
+    "firstname": "Sanjya",
+    "middlename": "Mehta",
+    "lastname": "Singhaniya",
+    "email": "  mehta@example.com",
+    "schoolID":"2001"
+  }
+]

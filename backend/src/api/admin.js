@@ -4,9 +4,9 @@ import fs from 'fs'
 import {body,validationResult} from 'express-validator';
 import multer from 'multer';
 
-import Users from '../../schema/Users.js'
-import Subject from '../../schema/Subject.js'
-import { group } from 'console';
+// import Users from '../../schema/Users.js'
+// import Subject from '../../schema/Subject.js'
+// import { group } from 'console';
 
 const router=express.Router();
 router.use(express.json());

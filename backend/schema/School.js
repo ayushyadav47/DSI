@@ -21,7 +21,7 @@ const SchoolSchema =new mongoose.Schema({
         // req: true
     },
 
-    schooladminID:{
+    adminID:{
         type:String,
         required: true
     },

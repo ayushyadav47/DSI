@@ -1,0 +1,58 @@
+[
+  {
+    "rollno": 1111,
+    "firstname": "Ananya",
+    "middlename": "",
+    "lastname": "Patel",
+    "DOB": "2012,5,1",
+    "schoolID":"2000"
+  },
+  {
+    "rollno": 1112,
+    "firstname": "Kabir",
+    "middlename": "",
+    "lastname": "Reddy",
+    "DOB": "2012,10,1",
+    "schoolID":"2000"
+  },
+  {
+    "rollno":1113,
+    "firstname": "Pari",
+    "middlename": "",
+    "lastname": "Joshi",
+    "DOB": "2012,8,18",
+    "schoolID":"2000"
+  },
+  {
+    "rollno": 1114,
+    "firstname": "Aditya",
+    "middlename": "S",
+    "lastname": "Kumar",
+    "DOB": "2013,1,1",
+    "schoolID":"2000"
+  },
+  {
+    "rollno": 1115,
+    "firstname": "Kavya",
+    "middlename": "",
+    "lastname": "Menon",
+    "DOB": "2013,2,1",
+    "schoolID":"2000"
+  },
+  {
+    "rollno": 1116,
+    "firstname": "Aman",
+    "middlename": "",
+    "lastname": "Kareem",
+    "DOB": "2012,5,10",
+    "schoolID":"2000"
+  },
+  {
+    "rollno":1117,
+    "firstname": "Dhruv",
+    "middlename": "",
+    "lastname": "Bansal",
+    "DOB": "2013,7,17",
+    "schoolID":"2001"
+  }
+]

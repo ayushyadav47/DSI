@@ -1,0 +1,46 @@
+[
+  {
+    "teacherID": "3000A",
+    "firstname": "Ravi",
+    "middlename": "Singh",
+    "lastname": "Khanna",
+    "email": "  ravi@example.com",
+    "phoneno": 121212,
+    "schoolID":"2000"
+  },
+  {
+    "teacherID": "3000B",
+    "firstname": "Priya",
+    "middlename": "",
+    "lastname": "Sharma",
+    "email": "  priya@example.com",
+    "phoneno": "",
+    "schoolID":"2000"
+  },
+  {
+    "teacherID": "3100A",
+    "firstname": "Natthu",
+    "middlename": "",
+    "lastname": "Ram",
+    "email": "  ram@example.com",
+    "phoneno": 232323,
+    "schoolID":"2000"
+  },
+  {
+    "teacherID": "3100C",
+    "firstname": "Sameer",
+    "middlename": "",
+    "lastname": "Shah",
+    "email": "  sam@example.com",
+    "phoneno": 343434,
+    "schoolID":"2000"
+  },
+  {
+    "teacherID": "3100D",
+    "firstname": "Heer",
+    "middlename": "",
+    "lastname": "",
+    "email": "  sam@example.com",
+    "schoolID":"2000"
+  }
+]

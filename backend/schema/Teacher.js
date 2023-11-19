@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 const TeacherSchema =new mongoose.Schema({
-    teacherid:{
+    teacherID:{
         type:String,
         required: true
     },

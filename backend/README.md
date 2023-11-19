@@ -18,5 +18,18 @@
 14. School 
 15. SchoolAdmin 
 16. Teacher 
+17. TeachingContent 
 
-TeachingContent 
+## Setup Data
+### Users
+1. Administrator
+2. School
+3. Teacher
+4. Student
+5. SchoolAdmin
+
+### Syllabus specific
+6. Class
+7. Subject
+8. Chapter
+9. Topic

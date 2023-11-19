@@ -38,7 +38,7 @@ const StudentSchema =new mongoose.Schema({
     studentclassinst:{
         type: Schema.Types.ObjectId,
         ref: "StudentClassInstance Schema",
-        req: true
+        default: null
     }
 });
 
