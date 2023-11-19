@@ -2,20 +2,14 @@
 
 import React, { useState } from 'react';
 import Navbar from './components/navbar.jsx';
+// import ExpandableMenus from './components/lists.jsx'; 
+import ClassTable from './components/classtable.jsx'; 
 
 const Homepage = () => {
-  const [selectedRoles, setSelectedRoles] = useState({
-    student: false,
-    teacher: false,
-    admin: false,
-    districtAdmin: false,
-  });
+  const [selectedRole, setSelectedRole] = useState('');
 
   const handleRoleChange = (role) => {
-    setSelectedRoles((prevRoles) => ({
-      ...prevRoles,
-      [role]: !prevRoles[role],
-    }));
+    setSelectedRole(role);
   };
 
   return (
@@ -24,42 +18,53 @@ const Homepage = () => {
         <label>
           Student
           <input
-            type="checkbox"
-            checked={selectedRoles.student}
+            type="radio"
+            name="role"
+            value="student"
+            checked={selectedRole === 'student'}
             onChange={() => handleRoleChange('student')}
           />
         </label>
         <label>
           Teacher
           <input
-            type="checkbox"
-            checked={selectedRoles.teacher}
+            type="radio"
+            name="role"
+            value="teacher"
+            checked={selectedRole === 'teacher'}
             onChange={() => handleRoleChange('teacher')}
           />
         </label>
         <label>
           Admin
           <input
-            type="checkbox"
-            checked={selectedRoles.admin}
+            type="radio"
+            name="role"
+            value="admin"
+            checked={selectedRole === 'admin'}
             onChange={() => handleRoleChange('admin')}
           />
         </label>
         <label>
           District Admin
           <input
-            type="checkbox"
-            checked={selectedRoles.districtAdmin}
+            type="radio"
+            name="role"
+            value="districtAdmin"
+            checked={selectedRole === 'districtAdmin'}
             onChange={() => handleRoleChange('districtAdmin')}
           />
         </label>
       </div>
 
-      <Navbar userRoles={selectedRoles} />
-      
+      <Navbar userRoles={{ [selectedRole]: true }} selectedRole={selectedRole} handleRoleChange={handleRoleChange} />
+
+      {/* Inserting YourMainComponent */}
+      {selectedRole && <ClassTable userRole={selectedRole} />}
+
       {/* Rest of the homepage content */}
       <div>
-        <h1>Welcome to the Homepage!</h1>
+        <h1>Homepage placeholder</h1>
         {/* Other homepage content goes here */}
       </div>
     </div>

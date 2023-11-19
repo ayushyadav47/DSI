@@ -6,81 +6,107 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 
-const Navbar = ({ userRoles }) => {
+const Navbar = ({ userRoles, selectedRole, handleRoleChange }) => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  // Define menu items for each role
+  const roleMenus = {
+    student: [
+      { key: "quiz-list", label: "Quiz List", to: "/quiz-list" },
+      { key: "results", label: "Results", to: "/results" },
+    ],
+    teacher: [
+      { key: "quiz-list", label: "Quiz List", to: "/quiz-list" },
+      { key: "class-list", label: "Class List", to: "/class-list" },
+      { key: "subject-list", label: "Subject List", to: "/subject-list" },
+      { key: "content-generation", label: "Content Generation", to: "/content-generation" },
+    ],
+    admin: [
+      { key: "quiz-list", label: "Quiz List", to: "/quiz-list" },
+      { key: "class-list", label: "Class List", to: "/class-list" },
+      { key: "subject-list", label: "Subject List", to: "/subject-list" },
+      // Remove Content Generation for Admin
+    ],
+    districtAdmin: [
+      { key: "quiz-list", label: "Quiz List", to: "/quiz-list" },
+      { key: "subject-list", label: "Subject List", to: "/subject-list" },
+      // Remove Content Generation for District Admin
+      { key: "school-list", label: "School List", to: "/school-list" },
+    ],
+  };
+
+  // Remove Content Generation for roles other than teacher
+  if (roleMenus[selectedRole] && selectedRole !== 'teacher') {
+    const teacherIndex = roleMenus[selectedRole].findIndex(item => item.key === 'content-generation');
+    if (teacherIndex !== -1) {
+      roleMenus[selectedRole].splice(teacherIndex, 1);
+    }
+  }
+
   return (
     <AppBar position="static">
       <Toolbar>
+        <IconButton
+          color="inherit"
+          aria-controls="menu"
+          aria-haspopup="true"
+          onClick={handleMenuOpen}
+        >
+          <MenuIcon />
+        </IconButton>
+
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
-            Your Logo
+            Welcome!
           </Link>
         </Typography>
 
-        {userRoles.student && (
-          <>
-            <Button color="inherit" component={Link} to="/quiz-list">
-              Quiz List
+        {/* Render menu items directly in AppBar */}
+        {roleMenus[selectedRole] &&
+          roleMenus[selectedRole].map((menuItem) => (
+            <Button
+              key={menuItem.key}
+              color="inherit"
+              component={Link}
+              to={menuItem.to}
+              onClick={handleMenuClose}
+            >
+              {menuItem.label}
             </Button>
-            <Button color="inherit" component={Link} to="/results">
-              Results
-            </Button>
-          </>
-        )}
+          ))}
 
-        {userRoles.teacher && (
-          <>
-            <Button color="inherit" component={Link} to="/quiz-list">
-              Quiz List
-            </Button>
-            <Button color="inherit" component={Link} to="/class-list">
-              Class List
-            </Button>
-            <Button color="inherit" component={Link} to="/subject-list">
-              Subject List
-            </Button>
-            <Button color="inherit" component={Link} to="/content-generation">
-              Content Generation
-            </Button>
-          </>
-        )}
-
-        {userRoles.admin && (
-          <>
-            <Button color="inherit" component={Link} to="/quiz-list">
-              Quiz List
-            </Button>
-            <Button color="inherit" component={Link} to="/class-list">
-              Class List
-            </Button>
-            <Button color="inherit" component={Link} to="/subject-list">
-              Subject List
-            </Button>
-            <Button color="inherit" component={Link} to="/content-generation">
-              Content Generation
-            </Button>
-          </>
-        )}
-
-        {userRoles.districtAdmin && (
-          <>
-            <Button color="inherit" component={Link} to="/quiz-list">
-              Quiz List
-            </Button>
-            <Button color="inherit" component={Link} to="/class-list">
-              Class List
-            </Button>
-            <Button color="inherit" component={Link} to="/subject-list">
-              Subject List
-            </Button>
-            <Button color="inherit" component={Link} to="/content-generation">
-              Content Generation
-            </Button>
-            <Button color="inherit" component={Link} to="/school-list">
-              School List
-            </Button>
-          </>
-        )}
+        <Menu
+          id="menu"
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+        >
+          {/* Render menu items in the Menu */}
+          {roleMenus[selectedRole] &&
+            roleMenus[selectedRole].map((menuItem) => (
+              <MenuItem
+                key={menuItem.key}
+                component={Link}
+                to={menuItem.to}
+                onClick={handleMenuClose}
+              >
+                {menuItem.label}
+              </MenuItem>
+            ))}
+        </Menu>
 
         <Button color="inherit" component={Link} to="/login">
           Login
