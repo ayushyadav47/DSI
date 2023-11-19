@@ -15,10 +15,8 @@
 11. QuizAttempt 
 12. QuizRating 
 13. Administrator 
-
-School 
-
-SchoolAdmin 
+14. School 
+15. SchoolAdmin 
 16. Teacher 
 
 TeachingContent 

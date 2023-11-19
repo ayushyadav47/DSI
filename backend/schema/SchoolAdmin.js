@@ -3,8 +3,14 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 const SchoolAdminSchema =new mongoose.Schema({
+    schooladminID:{
+        type:String,
+        required: true
+    },
+    
     schoolID:{
         type:String,
+        ref: "School Schema",
         required: true
     },
     

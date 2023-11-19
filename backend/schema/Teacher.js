@@ -28,9 +28,14 @@ const TeacherSchema =new mongoose.Schema({
         type: String,
         req: true
     },
+    phoneno:{
+        type: Number
+    },
 
-    school:{ // TODO:
-
+    schoolID:{
+        type:String,
+        ref: "School Schema",
+        required: true
     },
 });
 

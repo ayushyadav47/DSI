@@ -29,11 +29,16 @@ const StudentSchema =new mongoose.Schema({
         req: true
     },
 
-    school:{ // TODO:
-
+    schoolID:{
+        type:String,
+        ref: "School Schema",
+        required: true
     },
-    studentclassinst:{ // TODO:
 
+    studentclassinst:{
+        type: Schema.Types.ObjectId,
+        ref: "StudentClassInstance Schema",
+        req: true
     }
 });
 
