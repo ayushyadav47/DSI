@@ -33,3 +33,8 @@
 7. Subject
 8. Chapter
 9. Topic
+
+### Instances
+10. ClassInstance
+11. SubjectInstance
+12. StudentClassInstance

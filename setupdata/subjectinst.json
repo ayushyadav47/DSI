@@ -1,0 +1,26 @@
+[
+    {
+        "teacher    ": "3000A" ,
+        "curriculum":"NCERT",
+        "classvalue": 6,
+        "section": "A",
+        "year":"2023-2024",
+        "subjectcode": "SC6"
+    },
+    {
+        "teacherID": "3000A" ,
+        "curriculum":"NCERT",
+        "classvalue": 8,
+        "section": "A",
+        "year":"2023-2024",
+        "subjectcode": "MA8"
+    },
+    {
+        "teacherID": "3000A" ,
+        "curriculum":"NCERT",
+        "classvalue": 8,
+        "section": "B",
+        "year":"2023-2024",
+        "subjectcode": "MA8"
+    }
+]

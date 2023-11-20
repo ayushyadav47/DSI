@@ -13,6 +13,10 @@ import Cls from '../../schema/Class.js'
 import Subj from '../../schema/Subject.js';
 import Chapter from '../../schema/Chapter.js';
 import Topic from '../../schema/Topic.js';
+import ClassInstance from '../../schema/ClassInstance.js';
+import Class from '../../schema/Class.js';
+import SubjectInstance from '../../schema/SubjectInstance copy.js';
+import StudentClassInstance from '../../schema/StudentClassInstance.js';
 
 const router=express.Router();
 router.use(express.json());
@@ -424,6 +428,175 @@ async(req,res)=>{
             await topic.save();
             added++;
             // console.log(subject);
+        }
+
+        console.log("added:",added)
+        return res.send({added}); 
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500);
+    }
+}
+)
+
+// Add ClassInstances
+router.post('/upload-file/classinst',upload.single('jsonFile'),
+async(req,res)=>{ 
+    try{
+        const { file } = req;
+        var added=0;
+
+        // Read and parse the JSON file
+        var filedata = fs.readFileSync(file.path, "utf8"); 
+        const jsonData = JSON.parse(filedata);
+
+        var classinst,foundclass
+        for(var i=0;i<jsonData.length;i++){
+            foundclass=await Class.find({curriculum:jsonData[i].curriculum,classvalue:jsonData[i].classvalue})
+            if(foundclass.length==0){
+                // TODO: Add Class here
+                continue;
+            }
+            classinst= await ClassInstance.find({class: foundclass[0]._id,section: jsonData[i].section, year:jsonData[i].year})
+            if(classinst.length){
+                console.log("found:",classinst[0])
+                // return res.status(400).send({errors: [{msg: "Subject not found"}]})
+                continue;
+            }
+            classinst=new ClassInstance({
+                class: foundclass[0]._id,
+                section: jsonData[i].section,
+                year:jsonData[i].year
+            })
+
+            await classinst.save();
+            added++;
+        }
+
+        console.log("added:",added)
+        return res.send({added}); 
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500);
+    }
+}
+)
+
+// Add SubjInstances
+router.post('/upload-file/subjinst',upload.single('jsonFile'),
+async(req,res)=>{ 
+    try{
+        const { file } = req;
+        var added=0;
+
+        // Read and parse the JSON file
+        var filedata = fs.readFileSync(file.path, "utf8"); 
+        const jsonData = JSON.parse(filedata);
+
+        var subjinst,foundclassinst,foundteacher,foundclass, foundsubj
+        for(var i=0;i<jsonData.length;i++){
+            foundclass=await Class.find({curriculum:jsonData[i].curriculum,classvalue:jsonData[i].classvalue})
+            if(foundclass.length==0){
+                console.log("Class not found")
+                // TODO: Add Class here
+                continue;
+            }
+
+            foundclassinst=await ClassInstance.find({class: foundclass[0]._id,section: jsonData[i].section, year:jsonData[i].year})
+            if(foundclassinst.length==0){
+                console.log("ClassInst not found")
+                // TODO: Add ClassInst here
+                continue;
+            }
+
+            foundteacher=await Teacher.find({teacherID:jsonData[i].teacherID})
+            if(foundteacher.length==0){
+                console.log("Teacher",jsonData[i].teacherID," not found")
+                continue;
+            }
+
+            foundsubj=await Subj.find({code:jsonData[i].subjcode})
+            if(foundsubj.length==0){
+                console.log("Subject not found")
+                continue;
+            }
+
+            subjinst= await SubjectInstance.find({teacherID:jsonData[i].teacherID,classinst:foundclassinst[0]._id,subjectcode:jsonData[i].subjcode})
+            if(subjinst.length){
+                console.log("found:",subjinst[0])
+                // return res.status(400).send({errors: [{msg: "Subject not found"}]})
+                continue;
+            }
+
+            subjinst=new SubjectInstance({
+                teacherID:jsonData[i].teacherID,
+                classinst:foundclassinst[0]._id,
+                subjectcode:jsonData[i].subjcode
+            })
+
+            await subjinst.save();
+            added++;
+        }
+
+        console.log("added:",added)
+        return res.send({added}); 
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500);
+    }
+}
+)
+
+// Add StudClassInst
+router.post('/upload-file/studentclassinst',upload.single('jsonFile'),
+async(req,res)=>{ 
+    try{
+        const { file } = req;
+        var added=0;
+
+        // Read and parse the JSON file
+        var filedata = fs.readFileSync(file.path, "utf8"); 
+        const jsonData = JSON.parse(filedata);
+
+        var studclsinst,foundclassinst,foundclass, foundstudent
+        for(var i=0;i<jsonData.length;i++){
+            foundclass=await Class.find({curriculum:jsonData[i].curriculum,classvalue:jsonData[i].classvalue})
+            if(foundclass.length==0){
+                console.log("Class not found")
+                // TODO: Add Class here
+                continue;
+            }
+
+            foundclassinst=await ClassInstance.find({class: foundclass[0]._id,section: jsonData[i].section, year:jsonData[i].year})
+            if(foundclassinst.length==0){
+                console.log("ClassInst not found")
+                // TODO: Add ClassInst here
+                continue;
+            }
+
+            foundstudent=await Student.find({rollno:jsonData[i].rollno})
+            if(foundstudent.length==0){
+                console.log("Student not found")
+                continue;
+            }
+
+            studclsinst= await StudentClassInstance.find({classinst:foundclassinst[0]._id,rollno:jsonData[i].rollno})
+            if(studclsinst.length){
+                console.log("found:",studclsinst[0])
+                // return res.status(400).send({errors: [{msg: "Subject not found"}]})
+                continue;
+            }
+
+            studclsinst=new StudentClassInstance({
+                classinst:foundclassinst[0]._id,
+                rollno:jsonData[i].rollno
+            })
+
+            await studclsinst.save();
+            added++;
         }
 
         console.log("added:",added)

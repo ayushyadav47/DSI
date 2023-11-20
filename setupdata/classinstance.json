@@ -1,0 +1,26 @@
+[
+  {
+    "curriculum":"NCERT",
+    "classvalue": 6,
+    "section": "A",
+    "year":"2023-2024"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 7,
+    "section": "A",
+    "year":"2023-2024"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 8,
+    "section": "A",
+    "year":"2023-2024"
+  },
+  {
+    "curriculum":"NCERT",
+    "classvalue": 8,
+    "section": "B",
+    "year":"2023-2024"
+  }
+]

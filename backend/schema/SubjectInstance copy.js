@@ -1,20 +1,22 @@
 import mongoose from 'mongoose';
 
-const ClassInstanceSchema =new mongoose.Schema({
-    classvalue:{
-        type: Number,
-        ref: "Class Schema",
+const SubjectInstanceSchema =new mongoose.Schema({
+    teacherID:{
+        type: String,
+        ref: "Teacher Schema",
         require: true
     },
-    section:{
-        type: String,
-        req: true
+    classinst:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "ClassInstance Schema",
+        require: true
     },
-    year:{
-        type: Number,
-        req: true
+    subjectcode:{
+        type: String,
+        ref: "Subj Schema",
+        require: true
     }
 });
 
-const ClassInstance=mongoose.model("ClassInstance Schema",ClassInstanceSchema);
-export default ClassInstance;
+const SubjectInstance=mongoose.model("SubjectInstance Schema",SubjectInstanceSchema);
+export default SubjectInstance;

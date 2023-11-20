@@ -11,7 +11,7 @@ const ClassInstanceSchema =new mongoose.Schema({
         req: true
     },
     year:{
-        type: Number,
+        type: String,
         req: true
     }
 });

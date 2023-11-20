@@ -1,19 +1,14 @@
 import mongoose, { Schema } from 'mongoose';
 
 const StudentClassInstanceSchema =new mongoose.Schema({
-    teacherid:{
-        type: String,
-        ref: "Teacher Schema",
-        require: true
-    },
-    classisnt:{
+    classinst:{
         type: Schema.Types.ObjectId,
         ref: "ClassInstance Schema",
         req: true
     },
-    subjectcode:{
-        type: String,
-        ref: "Subj Schema",
+    rollno:{
+        type: Number,
+        ref: "Student Schema",
         req: true
     }
 });
