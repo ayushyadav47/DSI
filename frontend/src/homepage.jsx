@@ -1,15 +1,25 @@
-// Homepage.js
+// homepage.jsx
 
 import React, { useState } from 'react';
 import Navbar from './components/navbar.jsx';
-// import ExpandableMenus from './components/lists.jsx'; 
-import ClassTable from './components/classtable.jsx'; 
+import AccordionList from './components/listaccordion.jsx';
+import ClassTable from './components/classtable.jsx';
 
 const Homepage = () => {
   const [selectedRole, setSelectedRole] = useState('');
+  const [showClassTable, setShowClassTable] = useState(false);
+  const [activeAccordion, setActiveAccordion] = useState(null);
 
   const handleRoleChange = (role) => {
     setSelectedRole(role);
+    setShowClassTable(false); // Reset the visibility of ClassTable when role changes
+    setActiveAccordion(null);
+  };
+
+  const handleAccordionClick = (accordionName) => {
+    // Show ClassTable only if the accordionName is "classList" and teacher role is selected
+    setShowClassTable(selectedRole === 'teacher' && accordionName === 'classList');
+    setActiveAccordion(accordionName);
   };
 
   return (
@@ -59,8 +69,10 @@ const Homepage = () => {
 
       <Navbar userRoles={{ [selectedRole]: true }} selectedRole={selectedRole} handleRoleChange={handleRoleChange} />
 
-      {/* Inserting YourMainComponent */}
-      {selectedRole && <ClassTable userRole={selectedRole} />}
+      <AccordionList onAccordionClick={handleAccordionClick} />
+
+      {/* Conditionally render ClassTable based on selected role and accordion click */}
+      {selectedRole && showClassTable && <ClassTable userRole={selectedRole} />}
 
       {/* Rest of the homepage content */}
       <div>
