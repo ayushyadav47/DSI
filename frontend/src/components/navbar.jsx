@@ -31,30 +31,22 @@ const Navbar = ({ userRoles, selectedRole, handleRoleChange }) => {
     teacher: [
       { key: "quiz-list", label: "Quiz List", to: "/quiz-list" },
       { key: "class-list", label: "Class List", to: "/class-list" },
-      { key: "subject-list", label: "Subject List", to: "/subject-list" },
+      // { key: "subject-list", label: "Subject List", to: "/subject-list" },
       { key: "content-generation", label: "Content Generation", to: "/content-generation" },
     ],
     admin: [
       { key: "quiz-list", label: "Quiz List", to: "/quiz-list" },
       { key: "class-list", label: "Class List", to: "/class-list" },
-      { key: "subject-list", label: "Subject List", to: "/subject-list" },
+      // { key: "subject-list", label: "Subject List", to: "/subject-list" },
       // Remove Content Generation for Admin
     ],
     districtAdmin: [
       { key: "quiz-list", label: "Quiz List", to: "/quiz-list" },
-      { key: "subject-list", label: "Subject List", to: "/subject-list" },
+      // { key: "subject-list", label: "Subject List", to: "/subject-list" },
       // Remove Content Generation for District Admin
       { key: "school-list", label: "School List", to: "/school-list" },
     ],
   };
-
-  // Remove Content Generation for roles other than teacher
-  if (roleMenus[selectedRole] && selectedRole !== 'teacher') {
-    const teacherIndex = roleMenus[selectedRole].findIndex(item => item.key === 'content-generation');
-    if (teacherIndex !== -1) {
-      roleMenus[selectedRole].splice(teacherIndex, 1);
-    }
-  }
 
   return (
     <AppBar position="static">

@@ -3,6 +3,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from './homepage.jsx';
+import ClassList from  './pages/classlist.jsx'
+import QuizList from './pages/quizlist.jsx';
 // import StudHomepage from './student/homepage.jsx';
 // import AdminHomepage from './admin/homepage.jsx';
 // import SetupPage from './admin/platformsetup.jsx';
@@ -15,6 +17,8 @@ function AppRouter() {
     <Router>
       <Routes>
         <Route path="/" element={<Homepage />} />
+        <Route path="/class-list" element={<ClassList />} />
+        <Route path="/quiz-list" element={<QuizList />} />
         {/* <Route path="/student" element={<StudHomepage />} />
         <Route path="/admin" element={<AdminHomepage />} />
         <Route path="/admin/setup" element={<SetupPage />} />
