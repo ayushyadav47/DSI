@@ -124,5 +124,11 @@
     "classvalue": 8,
     "name": "Sanskrit",
     "code": "SA8"
+  },
+  {
+    "curriculum":"SCERT",
+    "classvalue": 8,
+    "name": "English",
+    "code": "SE8"
   }
 ]

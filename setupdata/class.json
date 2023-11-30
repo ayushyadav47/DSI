@@ -10,5 +10,9 @@
   {
     "curriculum":"NCERT",
     "classvalue": 8
+  },
+  {
+    "curriculum":"SCERT",
+    "classvalue": 8 
   }
 ]
