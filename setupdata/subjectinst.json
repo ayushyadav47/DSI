@@ -1,6 +1,6 @@
 [
     {
-        "teacher    ": "3000A" ,
+        "teacherID": "3000A" ,
         "curriculum":"NCERT",
         "classvalue": 6,
         "section": "A",

@@ -15,7 +15,7 @@ import Chapter from '../../schema/Chapter.js';
 import Topic from '../../schema/Topic.js';
 import ClassInstance from '../../schema/ClassInstance.js';
 import Class from '../../schema/Class.js';
-import SubjectInstance from '../../schema/SubjectInstance copy.js';
+import SubjectInstance from '../../schema/SubjectInstance.js';
 import StudentClassInstance from '../../schema/StudentClassInstance.js';
 
 const router=express.Router();
@@ -492,7 +492,7 @@ async(req,res)=>{
         var added=0;
 
         // Read and parse the JSON file
-        var filedata = fs.readFileSync(file.path, "utf8"); 
+        var filedata = fs.readFileSync(file?.path, "utf8"); 
         const jsonData = JSON.parse(filedata);
 
         var subjinst,foundclassinst,foundteacher,foundclass, foundsubj
@@ -517,7 +517,7 @@ async(req,res)=>{
                 continue;
             }
 
-            foundsubj=await Subj.find({code:jsonData[i].subjcode})
+            foundsubj=await Subj.find({code:jsonData[i].subjectcode})
             if(foundsubj.length==0){
                 console.log("Subject not found")
                 continue;
@@ -533,7 +533,7 @@ async(req,res)=>{
             subjinst=new SubjectInstance({
                 teacherID:jsonData[i].teacherID,
                 classinst:foundclassinst[0]._id,
-                subjectcode:jsonData[i].subjcode
+                subjectcode:jsonData[i].subjectcode
             })
 
             await subjinst.save();
@@ -586,6 +586,8 @@ async(req,res)=>{
             studclsinst= await StudentClassInstance.find({classinst:foundclassinst[0]._id,rollno:jsonData[i].rollno})
             if(studclsinst.length){
                 console.log("found:",studclsinst[0])
+                foundstudent[0].studentclassinst=studclsinst[0]._id
+                await foundstudent[0].save()
                 // return res.status(400).send({errors: [{msg: "Subject not found"}]})
                 continue;
             }
@@ -594,6 +596,9 @@ async(req,res)=>{
                 classinst:foundclassinst[0]._id,
                 rollno:jsonData[i].rollno
             })
+
+            foundstudent[0].studentclassinst=studclsinst[0]._id
+            await foundstudent[0].save()
 
             await studclsinst.save();
             added++;
