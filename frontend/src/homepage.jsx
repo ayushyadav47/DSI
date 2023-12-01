@@ -1,27 +1,26 @@
-// homepage.jsx
-
 import React, { useState } from 'react';
 import Navbar from './components/navbar.jsx';
 import AccordionList from './components/listaccordion.jsx';
 import ClassTable from './components/classtable.jsx';
+import TeacherRadar from './teacher/avg-radar.jsx'; // Adjust the path based on your project structure
+import TeacherTemporal from './teacher/temporal.jsx'; // Adjust the path based on your project structure
+import DropdownSubject from './components/dropdown-subject.jsx'; // Adjust the path based on your project structure
+import DropdownClass from './components/dropdown-class.jsx';
 
 const Homepage = () => {
   const [selectedRole, setSelectedRole] = useState('');
-  const [showClassTable, setShowClassTable] = useState(false);
   const [activeAccordion, setActiveAccordion] = useState(null);
 
   const handleRoleChange = (role) => {
     setSelectedRole(role);
-    setShowClassTable(false); // Reset the visibility of ClassTable when role changes
     setActiveAccordion(null);
   };
 
   const handleAccordionClick = (accordionName) => {
-    // Show ClassTable only if the accordionName is "classList" and teacher role is selected
-    setShowClassTable(selectedRole === 'teacher' && accordionName === 'classList');
     setActiveAccordion(accordionName);
   };
 
+  const subjects = ['Subject 1', 'Subject 2', 'Subject 3'];
   return (
     <div>
       <div>
@@ -69,10 +68,31 @@ const Homepage = () => {
 
       <Navbar userRoles={{ [selectedRole]: true }} selectedRole={selectedRole} handleRoleChange={handleRoleChange} />
 
-      <AccordionList onAccordionClick={handleAccordionClick} />
-
-      {/* Conditionally render ClassTable based on selected role and accordion click */}
-      {selectedRole && showClassTable && <ClassTable userRole={selectedRole} />}
+      <div style={{ display: 'flex', marginTop: '16px' }}>
+        <div style={{ flex: '75%', paddingRight: '16px' }}>
+          {/* <AccordionList onAccordionClick={handleAccordionClick} /> */}
+          {/* Conditionally render ClassTable based on selected role and accordion click */}
+          {selectedRole === 'teacher' && (
+            <div style={{ marginTop: '16px' }}>
+              <ClassTable userRole={selectedRole} />
+            </div>
+          )}
+        </div>
+        
+        {/* Always render TeacherRadar on the right 1/4th */}
+        <div style={{ flex: 1, borderLeft: '1px solid black', overflow: 'auto' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <DropdownSubject subjects={subjects} />
+            <DropdownClass classes={['Class 1', 'Class 2', 'Class 3']} />
+          </div>
+          <div style={{ width: '100%', maxWidth: '100%' }}>
+            <TeacherRadar />
+          </div>
+          <div style={{ width: '100%', maxWidth: '100%' }}>
+            <TeacherTemporal />
+          </div>
+        </div>
+      </div>
 
       {/* Rest of the homepage content */}
       <div>

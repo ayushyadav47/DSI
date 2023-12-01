@@ -21,7 +21,6 @@ const Navbar = ({ userRoles, selectedRole, handleRoleChange }) => {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
-
   // Define menu items for each role
   const roleMenus = {
     student: [

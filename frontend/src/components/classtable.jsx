@@ -1,7 +1,9 @@
-// YourMainComponent.jsx
+// classtable.jsx
 
 import React, { useState } from 'react';
 import { Typography, Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Paper, Button, Box } from '@mui/material';
+import DropdownSubject from './dropdown-subject.jsx';
+import DropdownClass from './dropdown-class.jsx';
 
 const ClassTable = ({ userRole }) => {
   const [tableData, setTableData] = useState([
@@ -70,6 +72,14 @@ const ClassTable = ({ userRole }) => {
     setViewAll(false);
     setDisplayedRows(3);
   };
+  const handleClassChange = (event) => {
+    setSelectedClass(event.target.value);
+  };
+  const [selectedClass, setSelectedClass] = useState('');
+  const [selectedSubject, setSelectedSubject] = useState('');
+  const handleSubjectChange = (event) => {
+    setSelectedSubject(event.target.value);
+  };
 
   const handleViewAnalysis = (rowId) => {
     console.log(`View Analysis clicked for row with ID: ${rowId}`);
@@ -78,8 +88,11 @@ const ClassTable = ({ userRole }) => {
   };
 
   return userRole === 'teacher' ? (
+    
     <Box m={2} width="50%">
       <>
+      <DropdownClass classes={['6', '7', '8']} onChange={handleClassChange} />
+      <DropdownSubject subjects={['Math', 'Science', 'English']} onChange={handleSubjectChange} />
         <Typography variant="h5" gutterBottom>
           Analysis Table
         </Typography>

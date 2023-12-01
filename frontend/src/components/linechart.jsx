@@ -7,7 +7,8 @@ const ChartLine = ({ data, dataKeys }) => {
 
   return (
     <LineChart width={500} height={300} data={data}>
-      <XAxis dataKey="year" />
+      {/* Change XAxis to represent months */}
+      <XAxis dataKey="month" />
       <YAxis />
       <CartesianGrid stroke="#f5f5f5" />
       <Tooltip />
@@ -17,7 +18,7 @@ const ChartLine = ({ data, dataKeys }) => {
           key={key}
           type="monotone"
           dataKey={key}
-          stroke={lineColors[index % lineColors.length]} // Use specific colors from the array
+          stroke={lineColors[index % lineColors.length]}
           activeDot={{ r: 8 }}
         />
       ))}
