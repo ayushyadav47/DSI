@@ -31,7 +31,7 @@ const Navbar = ({ userRoles, selectedRole, handleRoleChange }) => {
       { key: "quiz-list", label: "Quiz List", to: "/quiz-list" },
       { key: "class-list", label: "Class List", to: "/class-list" },
       // { key: "subject-list", label: "Subject List", to: "/subject-list" },
-      { key: "content-generation", label: "Content Generation", to: "/content-generation" },
+      { key: "content-generation", label: "Content Generation", to: "http://localhost:5173" },
     ],
     admin: [
       { key: "quiz-list", label: "Quiz List", to: "/quiz-list" },
