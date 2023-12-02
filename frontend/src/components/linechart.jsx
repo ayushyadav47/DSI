@@ -6,23 +6,25 @@ const ChartLine = ({ data, dataKeys }) => {
   const lineColors = ['#FF5733', '#3498DB', '#27AE60', '#F1C40F'];
 
   return (
-    <LineChart width={500} height={300} data={data}>
-      {/* Change XAxis to represent months */}
-      <XAxis dataKey="month" />
-      <YAxis />
-      <CartesianGrid stroke="#f5f5f5" />
-      <Tooltip />
-      <Legend />
-      {dataKeys.map((key, index) => (
-        <Line
-          key={key}
-          type="monotone"
-          dataKey={key}
-          stroke={lineColors[index % lineColors.length]}
-          activeDot={{ r: 8 }}
-        />
-      ))}
-    </LineChart>
+    <div style={{justifyContent: 'center'}}>
+      <LineChart width={200} height={200} data={data}>
+        {/* Change XAxis to represent months */}
+        <XAxis dataKey="month" />
+        <YAxis />
+        <CartesianGrid stroke="#f5f5f5" />
+        {/* <Tooltip /> */}
+        <Legend />
+        {dataKeys.map((key, index) => (
+          <Line
+            key={key}
+            type="monotone"
+            dataKey={key}
+            stroke={lineColors[index % lineColors.length]}
+            activeDot={{ r: 8 }}
+          />
+        ))}
+      </LineChart>
+    </div>
   );
 };
 

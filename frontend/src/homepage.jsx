@@ -6,6 +6,7 @@ import TeacherRadar from './teacher/avg-radar.jsx'; // Adjust the path based on 
 import TeacherTemporal from './teacher/temporal.jsx'; // Adjust the path based on your project structure
 import DropdownSubject from './components/dropdown-subject.jsx'; // Adjust the path based on your project structure
 import DropdownClass from './components/dropdown-class.jsx';
+import QuizAccordion from './components/listaccordion.jsx';
 
 const Homepage = () => {
   const [selectedRole, setSelectedRole] = useState('');
@@ -20,7 +21,7 @@ const Homepage = () => {
     setActiveAccordion(accordionName);
   };
 
-  const subjects = ['Subject 1', 'Subject 2', 'Subject 3'];
+  const subjects = ['Mathematics','Science'];
   return (
     <div>
       <div>
@@ -68,27 +69,33 @@ const Homepage = () => {
 
       <Navbar userRoles={{ [selectedRole]: true }} selectedRole={selectedRole} handleRoleChange={handleRoleChange} />
 
+
       <div style={{ display: 'flex', marginTop: '16px' }}>
-        <div style={{ flex: '75%', paddingRight: '16px' }}>
+        <div style={{ flex: '70%', paddingRight: '16px' }}>
           {/* <AccordionList onAccordionClick={handleAccordionClick} /> */}
-          {/* Conditionally render ClassTable based on selected role and accordion click */}
           {selectedRole === 'teacher' && (
+            <>
             <div style={{ marginTop: '16px' }}>
               <ClassTable userRole={selectedRole} />
             </div>
+            <div style={{ marginTop: '16px' }}>
+              <QuizAccordion onAccordionClick={handleAccordionClick} />
+            </div>
+            </>
           )}
+          {selectedRole === 'student' && <QuizAccordion role={selectedRole} />}
         </div>
         
         {/* Always render TeacherRadar on the right 1/4th */}
-        <div style={{ flex: 1, borderLeft: '1px solid black', overflow: 'auto' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ flex: '30%', borderLeft: '1px solid black' }}>
+          <div style={{ display: 'flex'}}>
             <DropdownSubject subjects={subjects} />
-            <DropdownClass classes={['Class 1', 'Class 2', 'Class 3']} />
+            <DropdownClass classes={['6', '7', '8']} />
           </div>
-          <div style={{ width: '100%', maxWidth: '100%' }}>
+          <div style={{ width: '100%', maxWidth: '100%', margin: '0 auto', paddingLeft: '40px' }}>
             <TeacherRadar />
           </div>
-          <div style={{ width: '100%', maxWidth: '100%' }}>
+          <div style={{ width: '100%', maxWidth: '100%', margin: '0 auto', paddingLeft: '40px' }}>
             <TeacherTemporal />
           </div>
         </div>

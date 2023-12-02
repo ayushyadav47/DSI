@@ -89,13 +89,25 @@ const ClassTable = ({ userRole }) => {
 
   return userRole === 'teacher' ? (
     
-    <Box m={2} width="50%">
+    <Box m={2} width="100%">
       <>
-      <DropdownClass classes={['6', '7', '8']} onChange={handleClassChange} />
-      <DropdownSubject subjects={['Math', 'Science', 'English']} onChange={handleSubjectChange} />
-        <Typography variant="h5" gutterBottom>
-          Analysis Table
-        </Typography>
+      
+      
+        {/* <Typography variant="h5" gutterBottom>
+          Classes
+        </Typography> */}
+        <DropdownClass classes={['6', '7', '8']} onChange={handleClassChange} />
+        <DropdownSubject subjects={['Math', 'Science', 'English']} onChange={handleSubjectChange} />
+        <br/>
+        {viewAll ? (
+          <Button variant="outlined" onClick={handleReduceSize}>
+            Reduce Size
+          </Button>
+        ) : (
+          <Button variant="outlined" onClick={handleViewAll}>
+            View All
+          </Button>
+        )}
         <TableContainer component={Paper}>
           <Table size="small"> {/* Use dense table */}
             <TableHead>
@@ -126,8 +138,7 @@ const ClassTable = ({ userRole }) => {
                       size="small"
                       onClick={() => handleViewAnalysis(row.id)}
                       sx={{ height: '24px', fontSize: '10px' }}
-                    >
-                      View
+                    >View
                     </Button>
                   </TableCell>
                 </TableRow>
@@ -135,15 +146,7 @@ const ClassTable = ({ userRole }) => {
             </TableBody>
           </Table>
         </TableContainer>
-        {viewAll ? (
-          <Button variant="outlined" onClick={handleReduceSize}>
-            Reduce Size
-          </Button>
-        ) : (
-          <Button variant="outlined" onClick={handleViewAll}>
-            View All
-          </Button>
-        )}
+        
       </>
     </Box>
   ) : (

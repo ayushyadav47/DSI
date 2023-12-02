@@ -1,97 +1,54 @@
-import React, { useState } from 'react';
-import { Accordion, AccordionSummary, Typography, AccordionDetails, List, ListItem, ListItemText } from '@mui/material';
+import React from 'react';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ClassTable from './classtable.jsx';
-// import QuizTable from './quiztable.jsx'; // Assuming you have a QuizTable component
-import { styled } from '@mui/system';
+import TextField from '@mui/material/TextField';
+import DropdownClass from './dropdown-class.jsx';
+import DropdownSubject from './dropdown-subject.jsx';
 
-const CustomAccordion = styled(Accordion)(({ theme }) => ({
-  border: `1px solid ${theme.palette.divider}`,
-  '&:not(:last-child)': {
-    borderBottom: 0,
-  },
-  '&:before': {
-    display: 'none',
-  },
-}));
+const quizzes = [
+  { id: 1, title: 'Quiz 1' },
+  { id: 2, title: 'Quiz 2' },
+  // add more quizzes as needed
+];
 
-const CustomAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
-  backgroundColor:
-    theme.palette.mode === 'dark'
-      ? 'rgba(255, 255, 255, .05)'
-      : 'rgba(0, 0, 0, .03)',
-  flexDirection: 'row-reverse',
-  '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
-    transform: 'rotate(90deg)',
-  },
-  '& .MuiAccordionSummary-content': {
-    marginLeft: theme.spacing(1),
-  },
-}));
+const subjects = ['Math', 'Science']; // replace with your subjects
+const classes = ['6', '7','8']; // replace with your classes
 
-const CustomAccordionDetails = styled(AccordionDetails)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  padding: theme.spacing(2),
-  borderTop: '1px solid rgba(0, 0, 0, .125)',
-  width: '100%', // Set width to 100% to fill the parent container
-}));
+function handleQuizClick(quizId) {
+  console.log(`Quiz ${quizId} selected`);
+  // handle quiz selection here
+}
 
-const AccordionList = ({ onAccordionClick, selectedRole }) => {
-  const [isClassTableVisible, setIsClassTableVisible] = useState(false);
-  const [isQuizTableVisible, setIsQuizTableVisible] = useState(false);
-
-  const handleAccordionClick = (accordionName) => {
-    onAccordionClick(accordionName);
-
-    // Toggle the visibility of ClassTable and QuizTable based on the accordionName
-    setIsClassTableVisible(selectedRole === 'teacher' && accordionName === 'classList');
-    // setIsQuizTableVisible(selectedRole === 'teacher' && accordionName === 'quizList');
-  };
-
+function QuizAccordion() {
   return (
-    <div>
-      <CustomAccordion onClick={() => handleAccordionClick('quizList')}>
-        <CustomAccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="quiz-list-content" id="quiz-list-header">
-          <Typography>Quiz List</Typography>
-        </CustomAccordionSummary>
-        <CustomAccordionDetails>
-          {isQuizTableVisible && <ClassTable />}
-
-          {/* Dummy Quiz Data */}
-          <List>
-            <ListItem>
-              <ListItemText primary="Quiz 1" />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Quiz 2" />
-            </ListItem>
-            {/* Add more quiz items as needed */}
-          </List>
-        </CustomAccordionDetails>
-      </CustomAccordion>
-
-      <CustomAccordion onClick={() => handleAccordionClick('classList')}>
-        <CustomAccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="class-list-content" id="class-list-header">
-          <Typography>Class List</Typography>
-        </CustomAccordionSummary>
-        <CustomAccordionDetails>
-          {isClassTableVisible && <ClassTable userRole={selectedRole} />}
-
-          {/* Dummy Class Data */}
-          <List>
-            <ListItem>
-              <ListItemText primary="Class A" />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Class B" />
-            </ListItem>
-            {/* Add more class items as needed */}
-          </List>
-        </CustomAccordionDetails>
-      </CustomAccordion>
-    </div>
+    <Accordion >
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1a-content"
+        id="panel1a-header"
+      >
+        <Typography>Quizzes</Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <div style={{ display: 'flex', flexDirection: 'row'}}>
+          <DropdownSubject subjects={subjects} />
+          <DropdownClass classes={classes} />
+          <TextField label="Search By Chapter" />
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'row'}}>
+          {quizzes.map((quiz) => (
+            <Button variant="outlined" onClick={() => handleQuizClick(quiz.id)} key={quiz.id}>
+              {quiz.title}
+            </Button>
+          ))}
+        </div>
+      </AccordionDetails>
+    </Accordion>
   );
-};
+}
 
-export default AccordionList;
+export default QuizAccordion;
