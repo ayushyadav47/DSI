@@ -14,7 +14,7 @@ const router=express.Router();
 router.use(express.json());
 
 // List of all classes of a curriculum
-router.get('/class-list',async(req,res)=>{ 
+router.post('/class-list',async(req,res)=>{ 
     try{ 
         const {curriculum} = req.body;
         const result=await Class.find({curriculum:curriculum});
@@ -29,7 +29,7 @@ router.get('/class-list',async(req,res)=>{
 )
 
 // List of all subjects of a curriculum
-router.get('/subject-list',async(req,res)=>{ 
+router.post('/subject-list',async(req,res)=>{ 
     try{ 
         const {curriculum} = req.body;
         const result=await Subj.find({
@@ -51,7 +51,7 @@ router.get('/subject-list',async(req,res)=>{
 )
 
 // List of all ClassInst of a curriculum
-router.get('/classinst-list',async(req,res)=>{ 
+router.post('/classinst-list',async(req,res)=>{ 
     try{ 
         const {curriculum} = req.body;
         const result=await ClassInstance.find()
@@ -73,7 +73,7 @@ router.get('/classinst-list',async(req,res)=>{
 )
 
 // List of all Chapters
-router.get('/classinst-list',async(req,res)=>{ 
+router.post('/classinst-list',async(req,res)=>{ 
     try{ 
         const {curriculum} = req.body;
         const result=await Chapter.find()
@@ -88,7 +88,7 @@ router.get('/classinst-list',async(req,res)=>{
 )
 
 // List of all Topics
-router.get('/classinst-list',async(req,res)=>{ 
+router.post('/classinst-list',async(req,res)=>{ 
     try{ 
         const {curriculum} = req.body;
         const result=await Topic.find()

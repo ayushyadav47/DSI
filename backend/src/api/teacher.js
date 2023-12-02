@@ -18,7 +18,7 @@ function getRandomInt(max) {
 }
 
 // List of all subjects of a teacher
-router.get('/subject-list',async(req,res)=>{ 
+router.post('/subject-list',async(req,res)=>{ 
     try{ 
         const { teacherID } = req.body;
         console.log(teacherID)
@@ -60,7 +60,7 @@ router.get('/subject-list',async(req,res)=>{
 )
 
 // List of all students for a subject: Name, and Scores
-router.get('/class-list/subject-student-list',async(req,res)=>{ 
+router.post('/class-list/subject-student-list',async(req,res)=>{ 
     try{ 
         const { curriculum,teacherID, cls, section, year, subjname } = req.body;
         console.log(teacherID)
@@ -114,7 +114,7 @@ router.get('/class-list/subject-student-list',async(req,res)=>{
 )
 
 // Information of a Quiz
-router.get('/quiz-list/info',async(req,res)=>{ 
+router.post('/quiz-list/info',async(req,res)=>{ 
     try{ 
         const { curriculum,teacherID, cls, section, year, subjname,chaptername,topicname } = req.body;
         console.log(teacherID)
