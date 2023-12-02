@@ -79,7 +79,7 @@ const Homepage = () => {
               <ClassTable userRole={selectedRole} />
             </div>
             <div style={{ marginTop: '16px' }}>
-              <QuizAccordion onAccordionClick={handleAccordionClick} />
+              <QuizAccordion role={selectedRole} onAccordionClick={handleAccordionClick} />
             </div>
             </>
           )}
@@ -90,7 +90,7 @@ const Homepage = () => {
         <div style={{ flex: '30%', borderLeft: '1px solid black' }}>
           <div style={{ display: 'flex'}}>
             <DropdownSubject subjects={subjects} />
-            <DropdownClass classes={['6', '7', '8']} />
+            {selectedRole !== 'student' && <DropdownClass classes={['6', '7', '8']} />}
           </div>
           <div style={{ width: '100%', maxWidth: '100%', margin: '0 auto', paddingLeft: '40px' }}>
             <TeacherRadar />
