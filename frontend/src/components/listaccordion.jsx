@@ -24,7 +24,7 @@ function handleQuizClick(quizId) {
   console.log(`Quiz ${quizId} selected`);
   // handle quiz selection here
   if (quizId === 1) {
-    window.location.href = "http://your-desired-url.com";
+    window.location.href = "http://127.0.0.1:5500/index.html";
   }
 }
 
